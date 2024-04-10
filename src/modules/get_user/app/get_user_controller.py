@@ -1,4 +1,4 @@
-from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
+# from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
 from .get_user_usecase import GetUserUsecase
 from .get_user_viewmodel import GetUserViewmodel
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter

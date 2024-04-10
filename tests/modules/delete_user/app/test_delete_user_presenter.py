@@ -52,7 +52,7 @@ class Test_DeleteUserPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": '{"user_id": "1"}',
+            "body": '{"id": "1"}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -60,9 +60,8 @@ class Test_DeleteUserPresenter:
 
         response = lambda_handler(event, None)
 
-        expected = {'user_id': 1,
+        expected = {'id': 1,
                      'name': 'Bruno Soller',
-                     'email': 'soller@soller.com',
                      'state': 'APPROVED',
                      'message': 'the user was deleted successfully'}
 

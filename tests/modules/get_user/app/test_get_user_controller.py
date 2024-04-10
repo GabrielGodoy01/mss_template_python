@@ -13,15 +13,14 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase, observability=observability)
 
         request = HttpRequest(query_params={
-            'user_id': str(repo.users[1].user_id)
+            'id': str(repo.users[1].id)
         })
 
         response = controller(request=request)
 
         assert response.status_code == 200
-        assert response.body['user_id'] == repo.users[1].user_id
+        assert response.body['id'] == repo.users[1].id
         assert response.body['name'] == repo.users[1].name
-        assert response.body['email'] == repo.users[1].email
         assert response.body['state'] == repo.users[1].state.value
 
     def test_get_user_controller_missing_parameters(self):
@@ -34,7 +33,7 @@ class Test_GetUserController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == 'Field user_id is missing'
+        assert response.body == 'Field id is missing'
 
 
     def test_get_user_contoller_wrong_type_parameter(self):
@@ -43,13 +42,13 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase, observability=observability)
 
         request = HttpRequest(query_params={
-            'user_id': 999
+            'id': 999
         })
 
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field user_id isn't in the right type.\n Received: int.\n Expected: str"
+        assert response.body == "Field id isn't in the right type.\n Received: int.\n Expected: str"
 
     def test_get_user_contoller_entity_error(self):
         repo = UserRepositoryMock()
@@ -57,13 +56,13 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase, observability=observability)
 
         request = HttpRequest(query_params={
-            'user_id': 'abc'
+            'id': 'abc'
         })
 
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == 'Field user_id is not valid'
+        assert response.body == 'Field id is not valid'
 
     def test_get_user_controller_no_items_found(self):
         repo = UserRepositoryMock()
@@ -71,10 +70,10 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase, observability=observability)
 
         request = HttpRequest(query_params={
-            'user_id': str(999)
+            'id': str(999)
         })
 
         response = controller(request=request)
 
         assert response.status_code == 404
-        assert response.body == 'No items found for user_id'
+        assert response.body == 'No items found for id'

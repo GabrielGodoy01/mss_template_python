@@ -32,7 +32,7 @@ class Test_GetAllUsersPresenter:
                         "callerId": "AIDA...",
                         "cognitoIdentity": None,
                         "principalOrgId": None,
-                        "userArn": "arn:aws:iam::111122223333:user_id/example-user_id",
+                        "userArn": "arn:aws:iam::111122223333:id/example-id",
                         "userId": "AIDA..."
                     }
                 },
@@ -60,21 +60,18 @@ class Test_GetAllUsersPresenter:
         expected_body = {
             "all_users": [
                 {
-                    'user_id': 1,
+                    'id': 1,
                     'name': "Bruno Soller",
-                    'email': "soller@soller.com",
                     'state': 'APPROVED',
                 },
                 {
-                    'user_id': 2,
+                    'id': 2,
                     'name': "Vitor Brancas",
-                    'email': "brancas@brancas.com",
                     'state': 'REJECTED',
                 },
                 {
-                    'user_id': 3,
+                    'id': 3,
                     'name': "João Vilas",
-                    'email': "bruno@bruno.com",
                     'state': 'PENDING',
                 }
             ],

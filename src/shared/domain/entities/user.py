@@ -7,28 +7,23 @@ from src.shared.helpers.errors.domain_errors import EntityError
 
 class User(abc.ABC):
     name: str
-    email: str
     state: STATE
+    id: int
     MIN_NAME_LENGTH = 2
-    user_id: int
 
-    def __init__(self, name: str, email: str, state: STATE, user_id: int = None):
+    def __init__(self, name: str, state: STATE, id: int = None):
         if not User.validate_name(name):
             raise EntityError("name")
         self.name = name
 
-        if not User.validate_email(email):
-            raise EntityError("email")
-        self.email = email
+        if type(id) == int:
+            if id < 0:
+                raise EntityError("id")
 
-        if type(user_id) == int:
-            if user_id < 0:
-                raise EntityError("user_id")
+        if type(id) != int and id is not None:
+            raise EntityError("id")
 
-        if type(user_id) != int and user_id is not None:
-            raise EntityError("user_id")
-
-        self.user_id = user_id
+        self.id = id
 
         if type(state) != STATE:
             raise EntityError("state")
@@ -45,16 +40,5 @@ class User(abc.ABC):
 
         return True
 
-    @staticmethod
-    def validate_email(email: str) -> bool:
-        if email is None:
-            return False
-
-        regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
-
-        return bool(re.fullmatch(regex, email))
-
-
-
     def __repr__(self):
-        return f"User(name={self.name}, email={self.email}, user_id={self.user_id}, state={self.state})"
+        return f"User(name={self.name}, id={self.id}, state={self.state})"

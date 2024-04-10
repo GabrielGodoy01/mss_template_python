@@ -52,7 +52,7 @@ class Test_CreateUserPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": '{"name":"EhOLudjas",  "email":"eho@ludjas.com"}',
+            "body": '{"name":"EhOLudjas"}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -60,7 +60,6 @@ class Test_CreateUserPresenter:
 
         # event = {'body': '{\r\n'
         #                  '    "name": "Bruno Soller Da Silva",\r\n'
-        #                  '    "email": "sollinhp@soller.com"\r\n'
         #                  '}',
         #          'headers': {'Accept': '*/*',
         #                      'Accept-Encoding': 'gzip, deflate, br',

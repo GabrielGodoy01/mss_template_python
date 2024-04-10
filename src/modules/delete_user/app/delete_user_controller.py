@@ -14,20 +14,20 @@ class DeleteUserController:
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            if request.data.get('user_id') is None:
-                raise MissingParameters('user_id')
+            if request.data.get('id') is None:
+                raise MissingParameters('id')
 
-            if type(request.data.get('user_id')) != str:
+            if type(request.data.get('id')) != str:
                 raise WrongTypeParameter(
-                    fieldName="user_id",
+                    fieldName="id",
                     fieldTypeExpected="str",
-                    fieldTypeReceived=request.data.get('user_id').__class__.__name__
+                    fieldTypeReceived=request.data.get('id').__class__.__name__
                 )
-            if not request.data.get('user_id').isdecimal():
-                raise EntityError("user_id")
+            if not request.data.get('id').isdecimal():
+                raise EntityError("id")
 
             user = self.DeleteUserUsecase(
-                user_id=int(request.data.get('user_id'))
+                id=int(request.data.get('id'))
             )
 
             viewmodel = DeleteUserViewmodel(user=user)

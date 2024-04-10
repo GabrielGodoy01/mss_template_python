@@ -10,17 +10,13 @@ class CreateUserUsecase:
     def __init__(self, repo: IUserRepository):
         self.repo = repo
 
-    def __call__(self, name: str, email: str) -> User:
+    def __call__(self, name: str) -> User:
 
         if not User.validate_name(name):
             raise EntityError("name")
 
-        if not User.validate_email(email):
-            raise EntityError("email")
-
         user = User(
             name=name,
-            email=email,
             state=STATE.PENDING
         )
 

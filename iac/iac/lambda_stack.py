@@ -29,9 +29,9 @@ class LambdaStack(Construct):
         return function
 
     def __init__(self, scope: Construct, api_gateway_resource: Resource, environment_variables: dict) -> None:
-        super().__init__(scope, "Template_Lambdas")
+        super().__init__(scope, "PythonMssRestApiTemplate_Lambdas")
 
-        self.lambda_layer = lambda_.LayerVersion(self, "Template_Layer",
+        self.lambda_layer = lambda_.LayerVersion(self, "PythonMssRestApiTemplate_Layer",
                                                  code=lambda_.Code.from_asset("./lambda_layer_out_temp"),
                                                  compatible_runtimes=[lambda_.Runtime.PYTHON_3_9]
                                                  )

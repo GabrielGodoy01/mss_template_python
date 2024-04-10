@@ -38,7 +38,7 @@ class UserRepositoryDynamo(IUserRepository):
         resp = self.dynamo.get_all_items()
         users = []
         for item in resp['Items']:
-            if item.get("entity") == 'user':
+            if 'id' in item:
                 users.append(UserDynamoDTO.from_dynamo(item).to_entity())
 
         return users

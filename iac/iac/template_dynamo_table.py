@@ -12,7 +12,7 @@ class TemplateDynamoTable(Construct):
         super().__init__(scope, construct_id, **kwargs)
 
         self.table = dynamodb.Table(
-            self, "PythonMssRestApiTemplate_DynamoTable",
+            self, "PythonMssTemplate_DynamoTable",
             partition_key=dynamodb.Attribute(
                 name="PK",
                 type=dynamodb.AttributeType.STRING

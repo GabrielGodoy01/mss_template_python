@@ -9,8 +9,8 @@ observability = ObservabilityMock(module_name="get_user")
 class Test_GetUserController:
     def test_get_user_controller(self):
         repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo, observability=observability)
-        controller = GetUserController(usecase=usecase, observability=observability)
+        usecase = GetUserUsecase(repo=repo)
+        controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
             'id': str(repo.users[1].id)
@@ -25,8 +25,8 @@ class Test_GetUserController:
 
     def test_get_user_controller_missing_parameters(self):
         repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo, observability=observability)
-        controller = GetUserController(usecase=usecase, observability=observability)
+        usecase = GetUserUsecase(repo=repo)
+        controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={})
 
@@ -38,8 +38,8 @@ class Test_GetUserController:
 
     def test_get_user_contoller_wrong_type_parameter(self):
         repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo, observability=observability)
-        controller = GetUserController(usecase=usecase, observability=observability)
+        usecase = GetUserUsecase(repo=repo)
+        controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
             'id': 999
@@ -52,8 +52,8 @@ class Test_GetUserController:
 
     def test_get_user_contoller_entity_error(self):
         repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo, observability=observability)
-        controller = GetUserController(usecase=usecase, observability=observability)
+        usecase = GetUserUsecase(repo=repo)
+        controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
             'id': 'abc'
@@ -66,8 +66,8 @@ class Test_GetUserController:
 
     def test_get_user_controller_no_items_found(self):
         repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo, observability=observability)
-        controller = GetUserController(usecase=usecase, observability=observability)
+        usecase = GetUserUsecase(repo=repo)
+        controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
             'id': str(999)

@@ -5,14 +5,14 @@ from src.shared.infra.external.observability.observability_aws import Observabil
 
 
 class GetUserUsecase:
-    def __init__(self, repo: IUserRepository, observability: ObservabilityAWS):
+    def __init__(self, repo: IUserRepository):
         self.repo = repo
-        self.observability = observability
+        # self.observability = observability
 
     def __call__(self, id: int) -> User:
-        self.observability.log_usecase_in()
+        # self.observability.log_usecase_in()
         if type(id) != int:
             raise EntityError("id")
         user = self.repo.get_user(id)
-        self.observability.log_usecase_out()
+        # self.observability.log_usecase_out()
         return user

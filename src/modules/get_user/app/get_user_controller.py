@@ -11,13 +11,13 @@ from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadR
 
 class GetUserController:
 
-    def __init__(self, usecase: GetUserUsecase, observability: ObservabilityAWS):
+    def __init__(self, usecase: GetUserUsecase):
         self.GetUserUsecase = usecase
-        self.observability = observability
+        # self.observability = observability
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            self.observability.log_controller_in()
+            # self.observability.log_controller_in()
             if request.data.get('id') is None:
                 raise MissingParameters('id')
 
@@ -39,25 +39,25 @@ class GetUserController:
             viewmodel = GetUserViewmodel(user)
             
             response = OK(viewmodel.to_dict())
-            self.observability.log_controller_out(input=user.id)
+            # self.observability.log_controller_out(input=user.id)
             return response
 
         except NoItemsFound as err:
-            self.observability.log_exception(message=err.message)
+            # self.observability.log_exception(message=err.message)
             return NotFound(body=err.message)
 
         except MissingParameters as err:
-            self.observability.log_exception(message=err.message)
+            # self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except WrongTypeParameter as err:
-            self.observability.log_exception(message=err.message)
+            # self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except EntityError as err:
-            self.observability.log_exception(message=err.message)
+            # self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except Exception as err:
-            self.observability.log_exception(message=err.args[0])
+            # self.observability.log_exception(message=err.args[0])
             return InternalServerError(body=err.args[0])

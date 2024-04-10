@@ -34,7 +34,7 @@ else:
     stage = 'TEST'
 
 tags = {
-    'project': 'PythonMssTemplate',
+    'project': 'MssTemplate',
     'stage': stage,
     'stack': 'BACK',
 }

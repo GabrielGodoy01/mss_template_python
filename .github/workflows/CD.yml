@@ -28,7 +28,7 @@ jobs:
         - name: Setting stage and stack name
           run: |
             echo "STAGE=${{ github.ref_name }}" 
-            echo "STACK_NAME=PythonMssTemplateStack" >> $GITHUB_ENV
+            echo "STACK_NAME=MssTemplateStack" >> $GITHUB_ENV
 
         - uses: actions/checkout@v3
         - uses: actions/setup-python@v4

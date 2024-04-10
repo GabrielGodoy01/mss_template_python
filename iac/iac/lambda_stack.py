@@ -73,4 +73,4 @@ class LambdaStack(Construct):
         )
 
         self.functions_that_need_dynamo_permissions = [self.get_user_function, self.create_user_function,
-                                                  self.delete_user_function, self.update_user_function]
+                                                  self.delete_user_function, self.update_user_function, self.get_all_users_function]

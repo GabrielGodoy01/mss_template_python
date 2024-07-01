@@ -9,5 +9,5 @@ setup(
     version='0.1.0',
     package_dir={'core': '.'},
     packages=['core'],
-    install_requires=read_requirements(),
+    # install_requires=read_requirements(),
 )

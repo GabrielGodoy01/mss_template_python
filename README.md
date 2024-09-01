@@ -21,9 +21,6 @@ the code in layers, each of which has a
 specific responsibility. This architecture is based on the principles of SOLID and books like "Clean Architecture: A
 Craftsman's Guide to Software Structure and Design" by Robert C. Martin.
 
-We also tried to explain for new programmers in the mos intuitive way and you can see the explanation here: [Clean Architecture Figma](https://www.figma.com/file/CmfQcH2xbZyIszPX0iOxPp/Clean-Arch---HackaBeckas?node-id=0%3A1&t=B38vNfX3VSv6qtU7-1)
-
-
 ### Folder Structure 🎄🌴🌲🌳
 
 Our folder structure was developed specially for our projects. 

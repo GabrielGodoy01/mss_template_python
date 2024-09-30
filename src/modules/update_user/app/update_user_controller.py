@@ -14,19 +14,12 @@ class UpdateUserController:
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            if request.data.get('id') is None:
-                raise MissingParameters('id')
+            if request.data.get('user_id') is None:
+                raise MissingParameters('user_id')
             if request.data.get('new_name') is None:
                 raise MissingParameters('new_name')
 
-            if type(request.data.get('id')) != str:
-                raise WrongTypeParameter(
-                    fieldName="id",
-                    fieldTypeExpected="str",
-                    fieldTypeReceived=request.data.get('id').__class__.__name__
-                )
-
-            user = self.UpdateUserUsecase(id=int(request.data.get('id')), new_name=request.data.get('new_name'))
+            user = self.UpdateUserUsecase(user_id=int(request.data.get('user_id')), new_name=request.data.get('new_name'))
 
             viewmodel = UpdateUserViewmodel(user=user)
 

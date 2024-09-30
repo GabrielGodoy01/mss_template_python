@@ -6,28 +6,24 @@ import pytest
 
 class Test_User:
     def test_user(self):
-        User(name="VITOR", id=1, state=STATE.APPROVED)
+        User(name="VITOR", user_id=1, state=STATE.APPROVED)
 
     def test_user_name_is_none(self):
         with pytest.raises(EntityError):
-            User(name=None, id=1, state=STATE.APPROVED)
+            User(name=None, user_id=1, state=STATE.APPROVED)
 
     def test_user_name_is_not_str(self):
         with pytest.raises(EntityError):
-            User(name=1, id=1, state=STATE.APPROVED)
+            User(name=1, user_id=1, state=STATE.APPROVED)
 
     def test_user_name_is_shorter_than_min_length(self):
         with pytest.raises(EntityError):
-            User(name="V",  id=1, state=STATE.APPROVED)
+            User(name="V",  user_id=1, state=STATE.APPROVED)
 
     def test_user_id_is_not_int(self):
         with pytest.raises(EntityError):
-            User(name="VITOR", id="1", state=STATE.APPROVED)
-
-    def test_user_id_is_negative(self):
-        with pytest.raises(EntityError):
-            User(name="VITOR", id=-1, state=STATE.APPROVED)
+            User(name="VITOR", user_id="1", state=STATE.APPROVED)
 
     def test_user_state_is_not_sate_enum(self):
         with pytest.raises(EntityError):
-            User(name="VITOR", id=1, state="APPROVED")
+            User(name="VITOR", user_id=1, state="APPROVED")

@@ -7,11 +7,11 @@ class UserViewmodel:
     def __init__(self, user: User):
         self.state = user.state
         self.name = user.name
-        self.id = user.id
+        self.user_id = user.user_id
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'user_id': self.user_id,
             'name': self.name,
             'state': self.state.value
         }

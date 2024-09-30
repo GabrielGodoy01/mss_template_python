@@ -11,16 +11,16 @@ class UserRepositoryMock(IUserRepository):
 
     def __init__(self):
         self.users = [
-            User(name="Bruno Soller", id=1, state=STATE.APPROVED),
-            User(name="Vitor Brancas", id=2, state=STATE.REJECTED),
-            User(name="João Vilas", id=3, state=STATE.PENDING)
+            User(name="Bruno Soller", user_id=1, state=STATE.APPROVED),
+            User(name="Vitor Brancas", user_id=2, state=STATE.REJECTED),
+            User(name="João Vilas", user_id=3, state=STATE.PENDING)
         ]
 
-    def get_user(self, id: int) -> User:
+    def get_user(self, user_id: int) -> User:
         for user in self.users:
-            if user.id == id:
+            if user.user_id == user_id:
                 return user
-        raise NoItemsFound("id")
+        raise NoItemsFound("user_id")
 
     def get_all_user(self) -> List[User]:
         return self.users
@@ -29,17 +29,17 @@ class UserRepositoryMock(IUserRepository):
         self.users.append(new_user)
         return new_user
 
-    def delete_user(self, id: int) -> User:
+    def delete_user(self, user_id: int) -> User:
         for idx, user in enumerate(self.users):
-            if user.id == id:
+            if user.user_id == user_id:
                 return self.users.pop(idx)
 
-        raise NoItemsFound("id")
+        raise NoItemsFound("user_id")
 
-    def update_user(self, id: int, new_name: str) -> User:
+    def update_user(self, user_id: int, new_name: str) -> User:
         for user in self.users:
-            if user.id == id:
+            if user.user_id == user_id:
                 user.name = new_name
                 return user
 
-        raise NoItemsFound("id")
+        raise NoItemsFound("user_id")

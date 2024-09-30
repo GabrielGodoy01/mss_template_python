@@ -7,11 +7,11 @@ from src.shared.domain.enums.state_enum import STATE
 class UserDynamoDTO:
     name: str
     state: STATE
-    id: int
+    user_id: int
 
-    def __init__(self, name: str, state: STATE, id: int):
+    def __init__(self, name: str, state: STATE, user_id: int):
         self.name = name
-        self.id = id
+        self.user_id = user_id
         self.state = state
 
     @staticmethod
@@ -21,7 +21,7 @@ class UserDynamoDTO:
         """
         return UserDynamoDTO(
             name=user.name,
-            id=user.id,
+            user_id=user.user_id,
             state=user.state
         )
 
@@ -30,9 +30,8 @@ class UserDynamoDTO:
         Parse data from UserDynamoDTO to dict
         """
         return {
-            "entity": "user",
             "name": self.name,
-            "id": self.id,
+            "user_id": self.user_id,
             "state": self.state.value
         }
 
@@ -44,7 +43,7 @@ class UserDynamoDTO:
         """
         return UserDynamoDTO(
             name=user_data["name"],
-            id=int(user_data["id"]),
+            user_id=int(user_data["user_id"]),
             state=STATE(user_data["state"])
         )
 
@@ -54,12 +53,12 @@ class UserDynamoDTO:
         """
         return User(
             name=self.name,
-            id=self.id,
+            user_id=self.user_id,
             state=self.state
         )
 
     def __repr__(self):
-        return f"UserDynamoDto(name={self.name}, id={self.id}, state={self.state})"
+        return f"UserDynamoDto(name={self.name}, user_id={self.user_id}, state={self.state})"
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

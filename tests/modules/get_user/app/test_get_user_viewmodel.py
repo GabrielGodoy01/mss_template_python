@@ -6,13 +6,13 @@ from src.shared.domain.enums.state_enum import STATE
 class Test_GetUserViewModel:
     def test_get_user_viewmodel(self):
         user = User(
-            id=1,
+            user_id=1,
             name="Vitor Soller",
             state=STATE.APPROVED
         )
         userViewmodel = GetUserViewmodel(user=user).to_dict()
 
-        expected = {'id': 1,
+        expected = {'user_id': 1,
                     'name': 'Vitor Soller',
                     'state': 'APPROVED',
                     'message': 'the user was retrieved successfully'}

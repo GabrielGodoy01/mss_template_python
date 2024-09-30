@@ -11,7 +11,7 @@ class Test_UserRepositoryMock:
         user = repo.get_user(1)
 
         assert user.name == "Bruno Soller"
-        assert user.id == 1
+        assert user.user_id == 1
         assert user.state == STATE.APPROVED
 
     def test_get_user_not_found(self):
@@ -28,21 +28,21 @@ class Test_UserRepositoryMock:
         repo = UserRepositoryMock()
         user = User(
             name="Vitor Soller",
-            id=4,
+            user_id=4,
             state=STATE.PENDING
         )
 
         repo.create_user(user)
 
         assert repo.users[3].name == "Vitor Soller"
-        assert repo.users[3].id == 4
+        assert repo.users[3].user_id == 4
         assert repo.users[3].state == STATE.PENDING
 
     def test_delete_user(self):
         repo = UserRepositoryMock()
         user = repo.delete_user(1)
         assert user.name == "Bruno Soller"
-        assert user.id == 1
+        assert user.user_id == 1
         assert user.state == STATE.APPROVED
 
     def test_delete_user_not_found(self):

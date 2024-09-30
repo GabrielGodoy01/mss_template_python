@@ -3,18 +3,18 @@ from src.shared.domain.enums.state_enum import STATE
 
 
 class CreateUserViewmodel:
-    id: int
+    user_id: int
     name: str
     state: STATE
 
     def __init__(self, user: User):
-        self.id = user.id
+        self.user_id = user.user_id
         self.name = user.name
         self.state = user.state
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'user_id': self.user_id,
             'name': self.name,
             'state': self.state.value,
             'message': "the user was created successfully"

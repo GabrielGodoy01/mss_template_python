@@ -13,13 +13,13 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            'id': str(repo.users[1].id)
+            'user_id': str(repo.users[1].user_id)
         })
 
         response = controller(request=request)
 
         assert response.status_code == 200
-        assert response.body['id'] == repo.users[1].id
+        assert response.body['user_id'] == repo.users[1].user_id
         assert response.body['name'] == repo.users[1].name
         assert response.body['state'] == repo.users[1].state.value
 
@@ -33,36 +33,7 @@ class Test_GetUserController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == 'Campo id está faltando'
-
-
-    def test_get_user_contoller_wrong_type_parameter(self):
-        repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo)
-        controller = GetUserController(usecase=usecase)
-
-        request = HttpRequest(query_params={
-            'id': 999
-        })
-
-        response = controller(request=request)
-
-        assert response.status_code == 400
-        assert response.body == "O campo 'id' deveria ser do tipo 'str', mas foi recebido 'int'"
-
-    def test_get_user_contoller_entity_error(self):
-        repo = UserRepositoryMock()
-        usecase = GetUserUsecase(repo=repo)
-        controller = GetUserController(usecase=usecase)
-
-        request = HttpRequest(query_params={
-            'id': 'abc'
-        })
-
-        response = controller(request=request)
-
-        assert response.status_code == 400
-        assert response.body == "O campo 'id' não é válido"
+        assert response.body == 'Campo user_id está faltando'
 
     def test_get_user_controller_no_items_found(self):
         repo = UserRepositoryMock()
@@ -70,10 +41,10 @@ class Test_GetUserController:
         controller = GetUserController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            'id': str(999)
+            'user_id': str(999)
         })
 
         response = controller(request=request)
 
         assert response.status_code == 404
-        assert response.body == 'Nenhum item encontrado: id'
+        assert response.body == 'Nenhum item encontrado: user_id'

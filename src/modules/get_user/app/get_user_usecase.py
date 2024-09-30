@@ -7,12 +7,6 @@ from src.shared.helpers.errors.domain_errors import EntityError
 class GetUserUsecase:
     def __init__(self, repo: IUserRepository):
         self.repo = repo
-        # self.observability = observability
 
-    def __call__(self, id: int) -> User:
-        # self.observability.log_usecase_in()
-        if type(id) != int:
-            raise EntityError("id")
-        user = self.repo.get_user(id)
-        # self.observability.log_usecase_out()
-        return user
+    def __call__(self, user_id: int) -> User:
+        return self.repo.get_user(user_id=user_id)

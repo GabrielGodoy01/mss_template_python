@@ -22,7 +22,7 @@ class Test_GetUserPresenter:
                 "header2": "value1,value2"
             },
             "queryStringParameters": {
-                "id": "1"
+                "user_id": "1"
             },
             "requestContext": {
                 "accountId": "123456789012",
@@ -64,4 +64,4 @@ class Test_GetUserPresenter:
         assert response["statusCode"] == 200
         assert json.loads(response["body"])["name"] == "Bruno Soller"
         assert json.loads(response["body"])["state"] == "APPROVED"
-        assert json.loads(response["body"])["id"] == 1
+        assert json.loads(response["body"])["user_id"] == 1

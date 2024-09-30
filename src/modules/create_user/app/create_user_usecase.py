@@ -17,7 +17,7 @@ class CreateUserUsecase:
             raise EntityError("name")
 
         user = User(
-            id=int(uuid4()),
+            user_id=int(uuid4()),
             name=name,
             state=STATE.PENDING
         )

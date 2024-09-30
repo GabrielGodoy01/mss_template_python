@@ -26,7 +26,7 @@ class UserRepositoryDynamo(IUserRepository):
                                        partition_key=Environments.get_envs().dynamo_partition_key,
                                        sort_key=Environments.get_envs().dynamo_sort_key)
     def get_user(self, id: int) -> User:
-        user_data = self.dynamo.get_item(partition_key=self.partition_key_format(user_id=id), sort_key=self.sort_key_format(id))                    
+        user_data = self.dynamo.get_item(partition_key=self.partition_key_format(id), sort_key=self.sort_key_format(id))                    
         
         if 'Item' not in user_data:
             return None
@@ -66,7 +66,7 @@ class UserRepositoryDynamo(IUserRepository):
     def update_user(self, id: int, new_name: str) -> User:
 
         response = self.dynamo.update_item(
-            partition_key=self.partition_key_format(user_id=id),
+            partition_key=self.partition_key_format(id),
             sort_key=self.sort_key_format(id),
             update_dict={'name': new_name})
 

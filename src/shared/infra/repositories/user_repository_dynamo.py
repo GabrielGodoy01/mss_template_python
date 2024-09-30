@@ -48,7 +48,7 @@ class UserRepositoryDynamo(IUserRepository):
     def create_user(self, new_user: User) -> User:
         item = UserDynamoDTO.from_entity(user=new_user).to_dynamo()
         resp = self.dynamo.put_item(
-            partition_key=self.partition_key_format(new_user.user_id),
+            partition_key=self.partition_key_format(new_user.id),
             sort_key=self.sort_key_format(id=new_user.id),
             item=item,
             is_decimal=True

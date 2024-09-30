@@ -35,7 +35,7 @@ class Test_UpdateUserController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field id is missing"
+        assert response.body == "Campo id está faltando"
 
     def test_update_user_controller_missing_new_name(self):
         repo = UserRepositoryMock()
@@ -49,7 +49,7 @@ class Test_UpdateUserController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field new_name is missing"
+        assert response.body == "Campo new_name está faltando"
 
     def test_update_user_controller_invalid_id(self):
         repo = UserRepositoryMock()
@@ -64,7 +64,7 @@ class Test_UpdateUserController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field id isn't in the right type.\n Received: int.\n Expected: str"
+        assert response.body == "O campo 'id' deveria ser do tipo 'str', mas foi recebido 'int'"
 
     def test_update_user_not_found(self):
         repo = UserRepositoryMock()
@@ -79,4 +79,4 @@ class Test_UpdateUserController:
         response = controller(request=request)
 
         assert response.status_code == 404
-        assert response.body == 'No items found for id'
+        assert response.body == 'Nenhum item encontrado: id'

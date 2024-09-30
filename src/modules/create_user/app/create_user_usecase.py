@@ -1,5 +1,6 @@
 
 
+from uuid import uuid4
 from src.shared.domain.entities.user import User
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.user_repository_interface import IUserRepository
@@ -16,6 +17,7 @@ class CreateUserUsecase:
             raise EntityError("name")
 
         user = User(
+            id=int(uuid4()),
             name=name,
             state=STATE.PENDING
         )

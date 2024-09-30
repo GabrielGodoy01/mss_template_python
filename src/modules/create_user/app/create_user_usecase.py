@@ -1,5 +1,6 @@
 
 
+import random
 from uuid import uuid4
 from src.shared.domain.entities.user import User
 from src.shared.domain.enums.state_enum import STATE
@@ -17,7 +18,7 @@ class CreateUserUsecase:
             raise EntityError("name")
 
         user = User(
-            user_id=int(uuid4()),
+            user_id=int(random.randint(0, 1000000)),
             name=name,
             state=STATE.PENDING
         )

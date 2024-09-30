@@ -32,7 +32,7 @@ class UserDynamoDTO:
         return {
             "entity": "user",
             "name": self.name,
-            "id": Decimal(self.id),
+            "id": self.id,
             "state": self.state.value
         }
 
